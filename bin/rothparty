@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
+begin
+  require 'rubygems'
+  require 'bundler'
+  Bundler.setup(:default)
+rescue ::Exception => e
+end
+
+# Executable with absolute path to lib for hacking and development
+require File.join(File.dirname(__FILE__), '..', 'lib', 'rothparty', 'cli')
+
+Rothparty::CLI.invoke
+

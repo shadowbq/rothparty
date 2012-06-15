@@ -1,0 +1,35 @@
+ckup.expect
+#
+# Expect script to backup a Cisco Ironport via a SSH admin session
+#
+# Usage: ironport_backup.expect  <host|ip> <login> <password> <prompt> <output>
+
+#
+
+set firewall	[ lrange $argv 0 0 ]
+set username	[ lrange $argv 1 1 ]
+set password	[ lrange $argv 2 2 ]
+set prompt	[ lrange $argv 3 3 ]
+set filename	[ lrange $argv 4 4 ]
+match_max 50000
+
+spawn ssh -l $username $firewall
+expect "yes/no" { send "yes\r" }
+expect "assword:"
+send "$password\r"
+expect -timeout 10 "$prompt>"
+set output [open "$filename" "w"]
+set running 1
+send "show config running\r"
+expect "\n"
+expect "\[K"
+while { $running  > 0 } {
+	expect {
+		"\n"	{ puts -nonewline $output "$expect_out(buffer)" }
+		"lines *-* " { send " " }
+		"$prompt>"   { set running 0 }
+		eof		{ set running 0 }
+		timeout		{ set running 0 }
+	}
+}
+send "exit\r"
