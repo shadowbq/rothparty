@@ -1,0 +1,16 @@
+Ruby version mockup of RANCID.
+
+RothParty monitors a devices's configuration, including software and hardware and uses SVN Subversion to maintain history of changes.
+
+RothParty does this by the very simple process summarized here:
+
+    login to each device in the configuration file,
+    run various commands to get the information that will be saved,
+    cook the output; re-format, remove oscillating or incrementing data,
+    and finally commit those changes to the revision control system 
+
+
+This supports:
+
+IronPorts MailGateway
+PaloAlto Firewalls
