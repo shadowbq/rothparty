@@ -1,5 +1,7 @@
 Ruby version mockup of RANCID.
 
+http://www.shrubbery.net/rancid/
+
 RothParty monitors a devices's configuration, including software and hardware and uses SVN Subversion to maintain history of changes.
 
 RothParty does this by the very simple process summarized here:
