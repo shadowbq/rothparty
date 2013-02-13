@@ -1,4 +1,4 @@
-module Embrace
+module Rothparty
 
   class ApplianceTemplateErrorDirectCall < StandardError; end
 
